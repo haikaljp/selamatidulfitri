@@ -219,6 +219,31 @@
             30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
             40%, 60% { transform: translate3d(4px, 0, 0); }
         }
+
+        /* Tampilan Responsif untuk HP (Layar Kecil) */
+        @media (max-width: 768px) {
+            .card-ucapan {
+                padding: 25px 20px;
+                margin: 0 10px;
+            }
+
+            h1 { font-size: 1.6rem; }
+            
+            .arabic { font-size: 1.2rem; }
+            
+            /* Kecilkan ikon bulan sabit */
+            .floating-icon { font-size: 40px !important; }
+
+            /* Sesuaikan ukuran kaligrafi di pintu */
+            .gate-calig { font-size: 3rem; }
+            
+            /* Sesuaikan teks instruksi ketuk pintu */
+            .gate-text { font-size: 1rem; }
+            
+            .gate-text span { font-size: 2.5rem !important; }
+            
+            p { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
