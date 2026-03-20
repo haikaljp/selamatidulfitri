@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugeng Riyadi IdulFitri 1447 H</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Amiri&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald: #064e3b;
+            --gold: #fbbf24;
+            --light-gold: #fde68a;
+        }
+
+        body {
+            background-color: #022c22;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Background Particle Effect */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Card */
+        .card-ucapan {
+            background: rgba(6, 78, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+            animation: fadeInScale 1.5s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--light-gold);
+        }
+
+        .ornament {
+            width: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 5px var(--gold));
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        .floating-icon {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, #b45309, var(--gold));
+            border: none;
+            color: #064e3b;
+            font-weight: bold;
+            padding: 10px 30px;
+            border-radius: 50px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+            color: black;
+        }
+
+        /* Styles untuk Pintu Gerbang */
+        #gate-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gate-panel {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            /* GANTI URL DI BAWAH INI JIKA INGIN PAKAI GAMBAR PINTU SENDIRI */
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+            /* background: url('https://link-gambar-pintu-anda.jpg'); */
+            transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .gate-left { 
+            left: 0; 
+            border-right: 4px solid var(--gold);
+            box-shadow: inset -5px 0 15px rgba(0,0,0,0.5); 
+            /* Agar gambar menyambung (sisi kiri) */
+            background-position: left center;
+            background-size: 200% 100%;
+        }
+        
+        .gate-right { 
+            right: 0; 
+            border-left: 4px solid var(--gold);
+            box-shadow: inset 5px 0 15px rgba(0,0,0,0.5);
+            /* Agar gambar menyambung (sisi kanan) */
+            background-position: right center;
+            background-size: 200% 100%;
+        }
+
+        /* Dekorasi Mewah Pintu */
+        .gate-decoration {
+            border: 2px solid var(--gold);
+            width: 80%;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .gate-calig {
+            font-family: 'Amiri', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .gate-handle {
+            width: 20px;
+            height: 100px;
+            background: var(--gold);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        /* Posisi Handle */
+        .gate-left .gate-handle { right: 10px; }
+        .gate-right .gate-handle { left: 10px; }
+
+        .gate-text {
+            z-index: 10000;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            text-shadow: 0 0 10px black;
+            cursor: pointer;
+            transition: opacity 0.5s;
+            user-select: none;
+        }
+
+        /* Animasi Getar saat diketuk */
+        .shake { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pintu Gerbang -->
+    <div id="gate-container" onclick="handleKnock()" oncontextmenu="handleKnock(event)">
+        <div class="gate-panel gate-left">
+            <div class="gate-decoration">
+                <div class="gate-calig">مبارك</div> <!-- Marhaban (Selamat Datang) -->
+            </div>
+            <div class="gate-handle"></div>
+        </div>
+        <div class="gate-panel gate-right">
+            <div class="gate-decoration">
+                <div class="gate-calig">عيد</div> <!-- Ahlan (Halo/Welcome) -->
+            </div>
+            <div class="gate-handle"></div>
+        </div>
+        <div class="gate-text" id="knock-msg">
+            <span style="font-size: 3rem;">🚪</span><br>
+            Ketuk 3x untuk Bertamu
+        </div>
+    </div>
+
+    <div id="particles-js"></div>
+    <!-- Audio Background -->
+    <audio id="bg-music" loop>
+        <source src="https://s3.ustatik.com/audio.com.audio/transcoding/86/73/1828163753837386-1828163753888672-1828163770332039.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=F0E8U41NBMMW3Y027UTJ%2F20260320%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260320T144112Z&X-Amz-SignedHeaders=host&X-Amz-Expires=518400&X-Amz-Signature=dc846bb75dbb1f7eb61b28b0f154878d92723d190998402072671c605aa60822" type="audio/mp3">
+    </audio>
+    <!-- Audio Efek Ketukan -->
+    <audio id="knock-sound">
+        <source src="https://cdn.pixabay.com/audio/2025/10/13/audio_2e74221cb2.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container d-flex justify-content-center">
+        <div class="card-ucapan mx-3">
+            <div class="text-center">
+                <span class="floating-icon" style="font-size: 60px;">🌙</span>
+            </div>
+            
+            <div class="arabic mt-3">
+                بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+                <br>السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ
+            </div>
+
+            <p class="mb-4">Dengan segala kerendahan hati dan ketulusan, kami sekeluarga mengucapkan:</p>
+
+            <h1>Selamat IdulFitri<br><span style="color: #fff;">1 Syawal 1447 H</span></h1>
+
+            <div class="arabic mt-4" style="font-size: 1.4rem;">
+                تَقَبَّلَ اللّٰهُ مِنَّا وَمِنْكُمْ صِيَامَنَا وَصِيَامَكُمْ، تَقَبَّلْ يَا كَرِيْمُ
+            </div>
+            <p style="font-style: italic; font-size: 0.9rem;">
+                Taqabbalallahu minna wa minkum, shiyamana wa shiyamakum, taqabbal ya karim
+            </p>
+
+            <p class="mt-4">
+                <span class="highlight">Mohon maaf lahir dan batin</span> atas segala khilaf dan kesalahan. Semoga kita senantiasa dipertemukan kembali dengan Ramadan-Ramadan berikutnya dalam keadaan sehat dan penuh iman.
+            </p>
+
+            <p>
+                Semoga Allah Swt. melimpahkan rahmat, keberkahan, dan hidayah-Nya kepada kita semua. Aamiin ya Rabbal ‘alamin.
+            </p>
+
+            <div class="arabic mt-3 mb-3">
+                وَالسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        /* Konfigurasi Partikel (Bintang-bintang kecil) */
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80 },
+                "color": { "value": "#fbbf24" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": false },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "bottom",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" } }
+            }
+        });
+
+        // Logika Pintu Gerbang
+        let knockCount = 0;
+        let isOpening = false;
+
+        function handleKnock(event) {
+            if (event) event.preventDefault(); // Mencegah menu klik kanan muncul
+            if (isOpening) return;
+
+            // Mainkan suara ketukan
+            var knockAudio = document.getElementById("knock-sound");
+            knockAudio.currentTime = 0; // Reset agar bisa bunyi berulang cepat
+            knockAudio.play();
+
+            knockCount++;
+            const msg = document.getElementById('knock-msg');
+            const gate = document.getElementById('gate-container');
+
+            // Efek getar visual
+            msg.classList.remove('shake');
+            void msg.offsetWidth; // Trigger reflow
+            msg.classList.add('shake');
+
+            if (knockCount === 1) msg.innerHTML = '<span style="font-size: 3rem;">✊</span><br>Assalamualaikum...';
+            if (knockCount === 2) msg.innerHTML = '<span style="font-size: 3rem;">✊</span><br>Mohon Izin Masuk...';
+
+            if (knockCount >= 3) {
+                openGate();
+            }
+        }
+
+        function openGate() {
+            isOpening = true;
+            const left = document.querySelector('.gate-left');
+            const right = document.querySelector('.gate-right');
+            const text = document.querySelector('.gate-text');
+            const gateContainer = document.getElementById('gate-container');
+
+            text.style.opacity = '0';
+            left.style.transform = 'translateX(-100%)';
+            right.style.transform = 'translateX(100%)';
+
+            // Putar musik & efek setelah pintu mulai terbuka
+            var audio = document.getElementById("bg-music");
+            audio.play();
+            startConfetti();
+
+            // Hilangkan elemen pintu setelah animasi selesai agar bisa klik tombol di dalam
+            setTimeout(() => {
+                gateContainer.style.display = 'none';
+            }, 2500);
+        }
+
+        function startConfetti() {
+            // Efek Confetti (Pesta Kertas)
+            var duration = 3000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                // Luncurkan confetti dari kiri dan kanan
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#fbbf24', '#ffffff', '#064e3b'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#fbbf24', '#ffffff', '#064e3b'] });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
